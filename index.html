@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sourav</title>
+         <style>
+          *{
+    margin:0px;
+    padding:0px;
+    box-sizing:border-box;
+}
+
+section{
+    height:100vh;
+    background-color:rgb(39,41,68);
+}
+
+.score{
+    color:rgb(224,224,224);
+    height:20vh;
+    display:flex;
+    justify-content:space-around;
+    align-items:center ;
+}
+
+.score h2{
+    font-size:25px;
+}
+.score p{
+    text-align:center;
+    padding:10px;
+    font-size:20px;
+}
+
+.intro{
+    color:rgb(224,224,224);
+    height:20vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center ;
+    justify-content:space-around;
+    transition:opacity 1s ease;
+}
+
+.intro h1{
+    font-size:20px;
+}
+.intro button{
+    width:150px;
+    height:25px;
+    background:none;
+    border:none;
+    color:white;
+    background:rgb(45,117,96);
+    border-radius:1px;
+    
+}
+.player
+
+.match{
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.winner{
+    color:rgb(224,224,224);
+    text-align:center ;
+}
+.hand,
+.option{
+    display:flex;
+    justify-content:space-around;
+    align-items:center ;
+}
+.option button{
+    width:50px;
+    height:25px;
+    background:none;
+    border:none;
+    color:white;
+    background:rgb(45,117,96);
+    border-radius:1px;
+}
+.player-hand{
+    width:100px;
+    height:100px;
+    transform:rotateY(180deg);
+}
+.comp-hand{
+    width:100px;
+    height:100px;
+}
+.fadeOut{
+    opacity:0;
+}
+.fadeIn{
+    opacity:1;
+}
+
+
+.footer{
+    position:fixed ;
+    bottom:50px;
+    left:35%;
+    text-align:center;
+    color:white;
+}
+audio{
+    visibility:hidden;
+}
+
+
+
+         </style>
+    </head>
+    <body>
+        <section class="game">
+            <div class="score">
+                <div class="pscore">
+                    <h2>Player</h2>
+                    <p>0</p>
+                </div>
+                <div class="cscore">
+                    <h2>Computer</h2>
+                    <p>0</p>
+                </div>
+            </div>
+            
+            <div class="intro">
+                <h1>Rock Paper Scissor</h1>
+                <button onclick="aditya();">Let's play</button>
+            </div>
+            
+            <div class="match fadeOut">
+                <h2 class="winner"> Choose An Option</h2>
+                <div class="hand">
+                    <img class="player-hand" src="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/rock.png">
+                    <img class="comp-hand" src="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/rock.png">
+                </div>
+                <div class="option">
+                    <button class="rock" onclick="adif();">Rock</button>
+                    <button class="paper" onclick="adis();">Paper</button>
+                    <button class="scissor" onclick="adit()">Scissor</button>
+                </div>
+            </div>
+            <div class="footer">
+               ©SOURAV DEBNATH
+            </div>
+            <audio controls autoplay loop>
+               <source src="https://pagalsong.in/download/8879/Tom%20And%20Jerry%20-%20Satbir%20Aujla%20234%20KBPS%20mp3"
+
+            </audio>
+        </section>
+        <script>
+         alert("welcome! Hope you will enjoy it");
+
+var pscore=0;
+var cscore=0;
+var playBtn=document.querySelector(".intro button");
+
+
+        function aditya(){
+       var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeOut");
+introScreen.classList.remove("fadeIn");
+       
+       match.classList.add("fadeIn");
+       cscore=0;
+       pscore =0;
+       var pylscore = document.querySelector(".pscore p");
+     var comscore = document.querySelector(".cscore p");
+     pylscore.innerText = pscore;
+     comscore.innerText = cscore;
+
+winner=document.querySelector(".winner");
+winner.innerText ="Choose An Options";
+        }
+        
+        
+var options = document.querySelectorAll(".option button");
+    
+
+var compOption=["rock","paper","scissor"];
+
+
+
+//for rock button.
+
+
+function adif() {
+     //player choice
+     
+     var plChoice="rock";
+     
+     //computer choice
+     
+     var compOption=["rock","paper","scissor"];
+     var compNum= (Math.random()*3);
+     var compNum=Math.floor(compNum);
+     
+     var compChoice=compOption[compNum];
+     
+     //update images
+     
+     var playerHand = document.querySelector(".player-hand");
+var compHand = document.querySelector(".comp-hand");
+   playerHand.src = "https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/rock.png";
+    
+    // code
+    
+    var winner=document.querySelector(".winner");
+    
+    if(compChoice === "rock"){
+        winner.innerText="It is tie";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/rock.png";
+        
+    }
+    else if(compChoice === "scissor"){
+        winner.innerText = "Player wins";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/scissors.png";
+        pscore++;
+        
+    }
+    else{
+        winner.innerText ="Computer wins";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/paper.png";
+        cscore++;
+    }
+    //console.log(pscore ,cscore );
+    var pylscore = document.querySelector(".pscore p");
+     var comscore = document.querySelector(".cscore p");
+     pylscore.innerText = pscore;
+     comscore.innerText = cscore;
+     
+     // win check.
+     
+if(pscore==5){
+    alert("Congrats! Players win");
+    
+    var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeIn");
+       match.classList.remove("fadeIn");
+}
+
+if(cscore==5){
+    alert("Computer win");
+    
+    var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeIn");
+       match.classList.remove("fadeIn");
+}
+
+}
+
+
+//for scissor button
+
+
+function adit() {
+     //player choice
+     
+     var plChoice="scissor";
+     
+     //computer choice
+     
+     var compOption=["rock","paper","scissor"];
+     var compNum= (Math.random()*3);
+     var compNum=Math.floor(compNum);
+     
+     var compChoice=compOption[compNum];
+     
+     //update images
+     
+     var playerHand = document.querySelector(".player-hand");
+var compHand = document.querySelector(".comp-hand");
+   playerHand.src = "https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/scissors.png";
+    
+    // code
+    
+    var winner=document.querySelector(".winner");
+    
+    if(compChoice === "scissor"){
+        winner.innerText="It is tie";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/scissors.png";
+        
+    }
+    else if(compChoice === "paper"){
+        winner.innerText = "Player wins";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/paper.png";
+        pscore++;
+        
+    }
+    else{
+        winner.innerText ="Computer wins";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/rock.png";
+        cscore++;
+    }
+    //console.log(pscore ,cscore );
+    var pylscore = document.querySelector(".pscore p");
+     var comscore = document.querySelector(".cscore p");
+     pylscore.innerText = pscore;
+     comscore.innerText = cscore;
+     
+     // win check.
+     
+if(pscore==5){
+    alert("Congrats! Players win");
+    
+    var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeIn");
+       match.classList.remove("fadeIn");
+}
+
+if(cscore==5){
+    alert("Computer win");
+    
+    var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeIn");
+       match.classList.remove("fadeIn");
+}
+
+}
+
+
+//for paper button
+
+
+function adis() {
+     //player choice
+     
+     var plChoice="paper";
+     
+     //computer choice
+     
+     var compOption=["rock","paper","scissor"];
+     var compNum= (Math.random()*3);
+     var compNum=Math.floor(compNum);
+     
+     var compChoice=compOption[compNum];
+     
+     //update images
+     
+     var playerHand = document.querySelector(".player-hand");
+var compHand = document.querySelector(".comp-hand");
+   playerHand.src = "https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/paper.png";
+    
+    // code
+    
+    var winner=document.querySelector(".winner");
+    
+    if(compChoice === "paper"){
+        winner.innerText="It is tie";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/paper.png";
+        
+    }
+    else if(compChoice === "rock"){
+        winner.innerText = "Player wins";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/rock.png";
+        pscore++;
+        
+    }
+    else{
+        winner.innerText ="Computer wins";
+        compHand.src ="https://github.com/developedbyed/rock-paper-scissor/raw/master/assets/scissors.png";
+        cscore++;
+    }
+    //console.log(pscore ,cscore );
+    var pylscore = document.querySelector(".pscore p");
+     var comscore = document.querySelector(".cscore p");
+     pylscore.innerText = pscore;
+     comscore.innerText = cscore;
+     
+     // win check.
+     
+if(pscore==5){
+    alert("Congrats! Players win");
+    
+    var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeIn");
+       match.classList.remove("fadeIn");
+}
+
+if(cscore==5){
+    alert("Computer win");
+    
+    var introScreen=document.querySelector (".intro"); 
+       var match=document.querySelector(".match");
+       introScreen.classList.add("fadeIn");
+       match.classList.remove("fadeIn");
+}
+
+}
+
+
+
+
+        </script>
+    </body>
+</html>
+
